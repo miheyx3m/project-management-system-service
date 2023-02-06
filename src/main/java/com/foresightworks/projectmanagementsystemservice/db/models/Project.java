@@ -17,6 +17,7 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
     private Long id;
+    @Column(unique = true)
     private String uid;
     private String name;
     private String type;

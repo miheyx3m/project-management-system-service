@@ -59,7 +59,15 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
 
     @Override
     public List<Project> uploadProjectData(Items projects) {
+        List<Project> duplicateProjects = new ArrayList<>();
         List<Project> projectList = projects.getItems();
+        appData.getCurrentProjectMap().values().forEach(project -> {
+            if (projectList.contains(project)) {
+                duplicateProjects.add(project);
+                projectList.remove(project);
+            }
+        });// are uids already in the project, the duplicate uids won't add in the project
+        log.warn("Duplicate uids {}", duplicateProjects);
         projectRepository.saveAll(projectList);
         projectList.forEach(project -> {
             calculateDates(project);

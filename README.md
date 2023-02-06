@@ -12,6 +12,10 @@ Project Management System
         "endDate" : "Date",
         “children” : ”List<Subproject/Task>”
         }
-      
+    - JSON items format:
+        {
+          “items” : ”List<Project/Subproject/Task>”
+          }
 - Swagger endpoint:
     - http://localhost:8080/swagger-ui/
+    - Date format: dd-MM-yyyy
