@@ -23,7 +23,8 @@ public interface ProjectManagementService {
 
     float calculateCompletionProjectStatusByDate(String uid, Date checkDate);
 
-    Project updateDatesProjectorTaskOrSubproject(String uid, Date newStartDate, Date newEndDate);
+    Project updateEntityDates(String uid, Date newStartDate, Date newEndDate);
 
     ProjectTree getProjectTree(String uid);
+
 }

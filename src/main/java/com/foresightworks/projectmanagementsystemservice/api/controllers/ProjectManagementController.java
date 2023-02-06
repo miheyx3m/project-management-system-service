@@ -113,7 +113,7 @@ public class ProjectManagementController {
         if ((newStartDate == null && newEndDate == null) || (newStartDate != null && newEndDate != null && newStartDate.after(newEndDate))) {
             ResponseEntity.badRequest().build();
         }
-        Project existingProject = projectManagementService.updateDatesProjectorTaskOrSubproject(uid, newStartDate, newEndDate);
+        Project existingProject = projectManagementService.updateEntityDates(uid, newStartDate, newEndDate);
 
         return existingProject == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(existingProject);
     }

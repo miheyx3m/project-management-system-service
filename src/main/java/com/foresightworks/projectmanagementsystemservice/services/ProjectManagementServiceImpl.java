@@ -97,7 +97,6 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
         if (project.getParentUid() == null) {
             return;
         }
-        log.info("project : {}", project);
         Date startDate = project.getStartDate();
         Date endDate = project.getEndDate();
 
@@ -105,7 +104,6 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
         if (!parent.isPresent()) {
             return;
         }
-        log.info("parent : {}", parent);
         if (startDate == null || parent.get().getStartDate().before(startDate)) {
             startDate = parent.get().getStartDate();
         }
@@ -114,7 +112,6 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
         }
         parent.get().setStartDate(startDate);
         parent.get().setEndDate(endDate);
-        log.info("project saved: {}", project);
         projectRepository.save(project);
         updateDates(parent.get());
     }
@@ -167,7 +164,7 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
     }
 
     @Override
-    public Project updateDatesProjectorTaskOrSubproject(String uid, Date newStartDate, Date newEndDate) {
+    public Project updateEntityDates(String uid, Date newStartDate, Date newEndDate) {
         Optional<Project> existingProject = projectRepository.findByUid(uid);
         if (!existingProject.isPresent()) {
             log.error("Project/Subproject/Task not found with uid: " + uid);
